@@ -1,0 +1,25 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: qa-app-rollout
+spec:
+  replicas: 2
+  strategy:
+    canary: # We gebruiken de Canary strategie zoals gevraagd
+      steps:
+      - setWeight: 20
+      - pause: {duration: 10s}
+  selector:
+    matchLabels:
+      app: qa-app
+  template:
+    metadata:
+      labels:
+        app: qa-app
+    spec:
+      containers:
+      - name: web
+        image: placeholder-image
+        ports:
+        - containerPort: 80

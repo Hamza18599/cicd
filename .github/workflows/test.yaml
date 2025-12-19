@@ -1,0 +1,14 @@
+name: Test Pipeline
+on:
+  push:
+    branches-ignore:
+      - main
+      - dev
+      - qa
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Dummy Test
+        run: echo "Code wordt gecontroleerd op fouten..."
