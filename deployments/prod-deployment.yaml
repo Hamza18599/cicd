@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-native-app-prod
+  namespace: prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-prod
+  template:
+    metadata:
+      labels:
+        app: web-prod
+    spec:
+      containers:
+      - name: web-container
+        image: NOOR/cloud-native-app:prod-latest
+        ports:
+        - containerPort: 80

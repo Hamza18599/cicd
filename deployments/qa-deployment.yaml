@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-native-app-qa
+  namespace: qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-qa
+  template:
+    metadata:
+      labels:
+        app: web-qa
+    spec:
+      containers:
+      - name: web-container
+        image: NOOR/cloud-native-app:qa-latest
+        ports:
+        - containerPort: 80
